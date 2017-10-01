@@ -56,7 +56,7 @@ public class FragmentIco extends Fragment {
 
         llenarIconos();
 
-        //////////////////////////////////// Aqui tenian problemas....
+        //////////////////////////////////// Aqui tenia problemas....
 
         AdaptadorIconos adapter = new AdaptadorIconos(listaIco, listener);
 
@@ -72,8 +72,14 @@ public class FragmentIco extends Fragment {
     private void llenarIconos() {
 
         String[] list = getResources().getStringArray(R.array.names);
+        String[] img = getResources().getStringArray(R.array.images);
 
-        listaIco.add(new Iconos(R.drawable.cereal_guy, list[0]));
+     //   for(int i = 0 ; i<img.length ; i++){
+
+       //     listaIco.add(new Iconos(img[i], list[i])); //aqui cambie
+
+        //}
+        listaIco.add(new Iconos(R.drawable.cereal_guy,list[0]));
         listaIco.add(new Iconos(R.drawable.f_yeah,list[1]));
         listaIco.add(new Iconos(R.drawable.forever_alone, list[2]));
         listaIco.add(new Iconos(R.drawable.freddie_mercury, list[3]));

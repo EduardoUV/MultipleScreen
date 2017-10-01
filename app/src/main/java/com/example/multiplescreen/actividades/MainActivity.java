@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.multiplescreen.fragmento.DetailsFragment;
@@ -37,14 +38,32 @@ public class MainActivity extends AppCompatActivity implements OnIconSelected {
 
 
     @Override
-    public void onIconItemSelectedDetails(int icon, String text) {
-        Intent intent = new Intent(this, SecondActivity.class);
+    public void onIconItemSelectedDetails(int icon, String text) { //aqui cambie
 
-        intent.putExtra(DetailsFragment.ICON_KEY, icon);
-        intent.putExtra(DetailsFragment.TEXT_KEY, text);
+        View v = findViewById(R.id.container2); // validar container 2 en la vista original
 
-        startActivity(intent);
+        if (v == null) {
+            Intent intent = new Intent(this, SecondActivity.class);
+
+            intent.putExtra(DetailsFragment.ICON_KEY, icon); //aqui cambie
+            intent.putExtra(DetailsFragment.TEXT_KEY, text);
+
+            startActivity(intent);
+
+        } else {
+
+            Bundle bundle = new Bundle ();
+            bundle.putInt(DetailsFragment.ICON_KEY, icon);
+            bundle.putString(DetailsFragment.TEXT_KEY, text);
+
+            DetailsFragment detailsFragment = DetailsFragment.newInstance(bundle);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.replace(R.id.container2, detailsFragment);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            transaction.commit();
+
+        }
     }
-
 }
 

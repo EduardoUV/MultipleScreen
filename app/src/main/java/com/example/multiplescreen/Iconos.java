@@ -12,12 +12,10 @@ public class Iconos {
     }
 
     public int getFoto() {
-
         return foto;
     }
 
     public String getTitulo() {
-
         return titulo;
     }
 

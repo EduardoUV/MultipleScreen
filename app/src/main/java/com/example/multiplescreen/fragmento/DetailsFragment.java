@@ -1,6 +1,6 @@
 package com.example.multiplescreen.fragmento;
 
-
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
@@ -16,12 +16,14 @@ import com.example.multiplescreen.R;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Field;
+
+import static android.R.id.icon2;
 
 public class DetailsFragment extends Fragment {
 
     public static String ICON_KEY = "icon";
     public static String TEXT_KEY = "text";
-
 
     public static DetailsFragment newInstance(@Nullable Bundle extras) {
         DetailsFragment fragment = new DetailsFragment();
@@ -37,13 +39,11 @@ public class DetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.detalles, container, false);
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
 
         TextView textView = (TextView) getActivity().findViewById(R.id.titulo);
         ImageView imageView = (ImageView) getActivity().findViewById(R.id.imageview);
@@ -52,16 +52,15 @@ public class DetailsFragment extends Fragment {
         Bundle extras = getArguments();
 
         if (extras != null) {
-            int icon = (int) extras.get(DetailsFragment.ICON_KEY);
+            int icon = (int) extras.get(DetailsFragment.ICON_KEY); // aqui cambie
+            int icon2 = (int) extras.get(DetailsFragment.ICON_KEY); // aqui compara con otro
             String text = (String) extras.get(DetailsFragment.TEXT_KEY);
+
             String[] res = getResources().getStringArray(R.array.descriptions);
+            String[] img = getResources().getStringArray(R.array.images);
 
-            imageView.setImageResource(icon);
-
-            //String ejemplo = String.valueOf((icon));
-            // int resId = getResources().getIdentifier ((icon), null, getActivity().getPackageName ());
-
-            textView.setText(text);
+            textView.setText(text); //titulo
+            imageView.setImageResource(icon); //imagen
 
             if (icon == 2130837587) {
                 textView2.setText(res[0]);
@@ -109,7 +108,9 @@ public class DetailsFragment extends Fragment {
 
             if (icon == 2130837608) {
                 textView2.setText(res[11]);
+
             }
+
         }
     }
 }

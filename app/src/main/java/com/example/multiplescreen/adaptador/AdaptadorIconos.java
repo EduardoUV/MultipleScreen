@@ -1,6 +1,8 @@
 package com.example.multiplescreen.adaptador;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +27,7 @@ public class AdaptadorIconos extends RecyclerView.Adapter<AdaptadorIconos.ViewHo
 
     ArrayList<Iconos> listIconos;
     OnIconSelected listener;     /////////////////////////////////// agrege esto
-
+    Context context;
 
     public AdaptadorIconos(ArrayList<Iconos> listIconos, OnIconSelected listener) {
 
@@ -45,9 +47,9 @@ public class AdaptadorIconos extends RecyclerView.Adapter<AdaptadorIconos.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolderIconos holder, final int position) {
 
-        holder.textotitulo.setText(listIconos.get(position).getTitulo());
-        holder.i.setImageResource(listIconos.get(position).getFoto());
 
+        holder.textotitulo.setText(listIconos.get(position).getTitulo());
+        holder.i.setImageResource(listIconos.get(position).getFoto()); //aqui cambie
 
 ////////////////////////////////////////////////////// agregando lo del profe
 /*
@@ -66,8 +68,7 @@ public class AdaptadorIconos extends RecyclerView.Adapter<AdaptadorIconos.ViewHo
             public void onClick(View v) {
 
                 String text = listIconos.get(position).getTitulo();
-                int icon = listIconos.get (position).getFoto();
-
+                int icon = listIconos.get(position).getFoto();
 
                 listener.onIconItemSelectedDetails(icon,text);
             }
@@ -91,7 +92,7 @@ public class AdaptadorIconos extends RecyclerView.Adapter<AdaptadorIconos.ViewHo
 
         TextView textotitulo;
         ImageView i;
-        TextView des;
+
 
         public ViewHolderIconos(View itemView) {
             super(itemView);
